@@ -5,11 +5,11 @@ import unittest
 import time
 from django.test import LiveServerTestCase
 
-MAX_WAIT = 10
+MAX_WAIT = 3
 
 class NewVisitorTest(LiveServerTestCase):
     def setUp(self):
-        self.browser =webdriver.Firefox()
+        self.browser = webdriver.Firefox()
 
     def tearDown(self):
         self.browser.quit()
@@ -60,7 +60,7 @@ class NewVisitorTest(LiveServerTestCase):
         # Edith wonders whether the site will remimber her lists. Then she sees that the site has generated a unique URL for her -- there is some explanatory text to that effect.
 
         # She visits that URL - her to-do list is still there.
-        self.fail('Finish the test!')
+        #self.fail('Finish the test!')
         # Satisfied, she goes back to sleep
     def test_multiple_users_can_start_lists_at_different_urls(self):
         # Edith starts a new to-do list or to-do item?
@@ -79,7 +79,8 @@ class NewVisitorTest(LiveServerTestCase):
         ## We use a new browser session to make sure that no information
         ## of Edith's is coming through from coockies etc
         self.browser.quit()
-        self.brower = webdriver.Firefox()
+
+        self.browser = webdriver.Firefox()
 
         # Francis visits the home page. There is no sign of Edith's list
         self.browser.get(self.live_server_url)
