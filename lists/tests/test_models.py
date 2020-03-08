@@ -1,6 +1,7 @@
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 from lists.models import Item, List
-from django.core.exceptions import ValidationError
+
 
 # Create your tests here.
 class ListAndItemModelsTest(TestCase):
