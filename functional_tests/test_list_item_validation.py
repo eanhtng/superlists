@@ -1,9 +1,11 @@
-
+from lists.forms import DUPLICATE_ITEM_ERROR
 from selenium.webdriver.common.keys import Keys
 from unittest import skip
 from .base import FunctionalTest
 
 class ItemValidationTest(FunctionalTest):
+        def get_error_element(self):
+            return self.browser.find_element_by_css_selector('.has-error')
         def test_cannot_add_empty_list_items(self):
             # Edith goes to the home page and accidentally tries to submit
             # an empty list item. She hits Enter on the empty input box
@@ -41,8 +43,4 @@ class ItemValidationTest(FunctionalTest):
             self.get_item_input_box().send_keys(Keys.ENTER)
 
             # She sees a helpful error message
-            # print(type(self.browser.find_elements_by_css_selector('.has-error'))
-            error = self.get_error_element()
-            self.wait_for(lambda: self.assertEqual(error.text, "You're already got this in your list"))
-        def get_error_element(self):
-            return self.browser.find_element_by_css_selector('.has-error')
+            self.wait_for(lambda: self.assertEqual(self.get_error_element().text, DUPLICATE_ITEM_ERROR))
