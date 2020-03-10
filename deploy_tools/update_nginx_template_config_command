@@ -1,0 +1,1 @@
+cat ./deploy_tools/nginx.template.conf | sed "s/DOMAIN/superlists.edu.solutions/g" | sed "s/USER/anhnt/g" | sudo tee /etc/nginx/sites-available/superlists.edu.solutions
