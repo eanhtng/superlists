@@ -15,7 +15,7 @@ def deploy():
         _update_database()
         _update_nginx_config_template()
         _update_gunicorn_service_template()
-        _start_both_services():
+        _start_both_services()
 
 def _get_latest_source():
     if exists('.git'):
