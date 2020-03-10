@@ -13,9 +13,9 @@ def deploy():
         _create_or_update_dotenv()
         _update_static_files()
         _update_database()
-        _update_nginx_config_template()
-        _update_gunicorn_service_template()
-        _start_both_services()
+        #_update_nginx_config_template()
+        #_update_gunicorn_service_template()
+        #_start_both_services()
 
 def _get_latest_source():
     if exists('.git'):
@@ -44,14 +44,14 @@ def _update_static_files():
 def _update_database():
     run('./virtualenv/bin/python manage.py migrate --noinput')
 
-def _update_nginx_config_template():
-    run('sudo cat ./deploy_tools/nginx.template.conf | sed "s/DOMAIN/superlists.edu.solutions/g" | sed "s/USER/anhnt/g" | sudo tee /etc/nginx/sites-available/superlists.edu.solutions');
+#def _update_nginx_config_template():
+#    run('sudo cat ./deploy_tools/nginx.template.conf | sed "s/DOMAIN/superlists.edu.solutions/g" | sed "s/USER/anhnt/g" | sudo tee /etc/nginx/sites-available/superlists.edu.solutions');
 
-def _update_gunicorn_service_template():
-    run('sudo cat ./deploy_tools/gunicorn-systemd.template.service | sed "s/DOMAIN/superlists.edu.solutions/g" | sed "s/USER/anhnt/g" | sudo tee /etc/systemd/system/gunicorn-superlists.edu.solutions.service')
+#def _update_gunicorn_service_template():
+#    run('sudo cat ./deploy_tools/gunicorn-systemd.template.service | sed "s/DOMAIN/superlists.edu.solutions/g" | sed "s/USER/anhnt/g" | sudo tee /etc/systemd/system/gunicorn-superlists.edu.solutions.service')
 
-def _start_both_services():
-    run('sudo systemctl daemon-reload');
-    run('sudo systemctl reload nginx');
-    run('sudo systemctl enable gunicorn-superlists.edu.solutions');
-    run('sudo systemctl start gunicorn-superlists.edu.solutions');
+#def _start_both_services():
+#    run('sudo systemctl daemon-reload');
+#    run('sudo systemctl reload nginx');
+#    run('sudo systemctl enable gunicorn-superlists.edu.solutions');
+#    run('sudo systemctl start gunicorn-superlists.edu.solutions');
