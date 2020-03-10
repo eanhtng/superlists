@@ -1,6 +1,6 @@
 
 window.Superlists = {};
-window.Superlists.intialize = function () {
+window.Superlists.initialize = function () {
     $('input[name="text"]').on("keypress", function() {
             console.log("in keypress handler");
             $(".has-error").hide();

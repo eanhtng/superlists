@@ -1,0 +1,1 @@
+sudo ln -s /etc/nginx/sites-available/superlists.edu.solutions /etc/nginx/sites-enabled/superlists.edu.solutions
