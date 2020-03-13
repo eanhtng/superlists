@@ -118,7 +118,6 @@ class ListViewTest(TestCase):
         self.assertEqual(Item.objects.all().count(), 1)
 
 
-
 class NewListTest(TestCase):
     def test_can_save_a_POST_request(self):
         self.client.post('/lists/new', data = {'text': 'A new list item'})
@@ -144,9 +143,13 @@ class NewListTest(TestCase):
         response = self.client.post('/lists/new', data = {'text': ''})
         self.assertContains(response, escape(EMPTY_ITEM_ERROR))
 
-
-
     def test_invalid_list_items_arent_saved(self):
         self.client.post('/lists/new', data = {'text': ''})
         self.assertEqual(List.objects.count(),0)
         self.assertEqual(Item.objects.count(),0)
+
+class MyListsTest(TestCase):
+
+    def test_my_lists_url_renders_my_lists_template(self):
+        response = self.client.get('/lists/users/a@b.com/')
+        self.assertTemplateUsed(response, 'my_lists.html')
